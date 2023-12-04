@@ -2,23 +2,31 @@ import { Component } from "react";
 import { Phonebook } from "./Phonebook";
 import { Contacts } from "./Contacts";
 import { nanoid } from "nanoid";
+import { Filter } from "./Filter";
 
 
 export class App extends Component{
 
   state = {
-    contacts: [],
+    contacts: [
+    {id: 'id-1', name: 'Rosie Simpson', number: '459-12-56'},
+    {id: 'id-2', name: 'Hermione Kline', number: '443-89-12'},
+    {id: 'id-3', name: 'Eden Clements', number: '645-17-79'},
+    {id: 'id-4', name: 'Annie Copeland', number: '227-91-26'},
+  ],
+    filter: '',
     name: '',
     number: ''
   }
  
   onAddContact = e => {
-    console.log(this.state.contacts);
     const newContact = {
       name: e.name,
       id: nanoid(),
       number: e.number
     };
+
+    
     this.setState({contacts: this.state.contacts.concat([newContact])});
 
     //console.log(e.name);
@@ -26,10 +34,18 @@ export class App extends Component{
 
 
   }
+
+onSearching = filter => {
+  this.setState({ filter: filter});
+}
+
   render = () => (
     <div>
-      <Phonebook onAddContact={this.onAddContact }></Phonebook>
-      <Contacts contacts = {this.state.contacts}></Contacts>
+      <h1>Phonebook</h1>
+      <Phonebook onAddContact={this.onAddContact}></Phonebook>
+      <h2>Contacts</h2>
+      <Filter onSearching = {this.onSearching}></Filter>
+      <Contacts contacts = {this.state.contacts} filter = {this.state.filter}></Contacts>
     </div>
   )
 

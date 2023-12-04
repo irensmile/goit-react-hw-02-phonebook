@@ -14,7 +14,6 @@ export class Phonebook extends Component{
     render() {
         return (
             <div>
-                <h2>Phonebook</h2>
                 <form onSubmit={this.handleSubmit}>
                     <div>
                         <label htmlFor={this.nameInputId}>Name</label>
