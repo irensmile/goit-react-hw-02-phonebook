@@ -25,14 +25,9 @@ export class App extends Component{
       id: nanoid(),
       number: e.number
     };
-
-    
+    if (this.state.contacts.some(c => c.name === e.name))
+      alert(`${e.name} is already in contacts.`);
     this.setState({contacts: this.state.contacts.concat([newContact])});
-
-    //console.log(e.name);
-    //const contactId = nanoid();
-
-
   }
 
 onSearching = filter => {
