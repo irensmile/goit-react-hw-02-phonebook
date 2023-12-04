@@ -1,12 +1,13 @@
 import { Component } from "react";
+import { ContactItem } from "./ContactItem";
 
-export class Contacts extends Component{
+export class ContactList extends Component{
     render = () => (
         <div>
             <ul>
                 {this.props.contacts.map(contact => (
                     (!this.props.filter || contact.name.toLowerCase().startsWith(this.props.filter.toLowerCase())) &&
-                        (<li key={contact.id}>{contact.name} : {contact.number}</li>)
+                    (<ContactItem key={ contact.id} name={contact.name} number={ contact.number} />)
                 ))}
             </ul>
         </div>

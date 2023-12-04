@@ -1,6 +1,6 @@
 import { Component } from "react";
-import { Phonebook } from "./Phonebook";
-import { Contacts } from "./Contacts";
+import { ContactForm } from "./ContactForm";
+import { ContactList } from "./ContactList";
 import { nanoid } from "nanoid";
 import { Filter } from "./Filter";
 
@@ -42,10 +42,10 @@ onSearching = filter => {
   render = () => (
     <div>
       <h1>Phonebook</h1>
-      <Phonebook onAddContact={this.onAddContact}></Phonebook>
+      <ContactForm onAddContact={this.onAddContact}></ContactForm>
       <h2>Contacts</h2>
       <Filter onSearching = {this.onSearching}></Filter>
-      <Contacts contacts = {this.state.contacts} filter = {this.state.filter}></Contacts>
+      <ContactList contacts = {this.state.contacts} filter = {this.state.filter}></ContactList>
     </div>
   )
 

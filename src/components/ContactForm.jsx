@@ -1,7 +1,7 @@
 import { nanoid } from "nanoid";
 import { Component } from "react";
 
-export class Phonebook extends Component{
+export class ContactForm extends Component{
     handleSubmit = evt => {
         evt.preventDefault();
         const form = evt.currentTarget;
