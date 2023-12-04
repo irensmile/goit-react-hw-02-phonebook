@@ -8,14 +8,16 @@ export class App extends Component{
 
   state = {
     contacts: [],
-    name: ''
+    name: '',
+    number: ''
   }
  
   onAddContact = e => {
     console.log(this.state.contacts);
     const newContact = {
       name: e.name,
-      id: nanoid()
+      id: nanoid(),
+      number: e.number
     };
     this.setState({contacts: this.state.contacts.concat([newContact])});
 
