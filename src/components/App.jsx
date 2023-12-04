@@ -1,16 +1,36 @@
-export const App = () => {
-  return (
-    <div
-      style={{
-        height: '100vh',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        fontSize: 40,
-        color: '#010101'
-      }}
-    >
-      React homework template
+import { Component } from "react";
+import { Phonebook } from "./Phonebook";
+import { Contacts } from "./Contacts";
+import { nanoid } from "nanoid";
+
+
+export class App extends Component{
+
+  state = {
+    contacts: [],
+    name: ''
+  }
+ 
+  onAddContact = e => {
+    console.log(this.state.contacts);
+    const newContact = {
+      name: e.name,
+      id: nanoid()
+    };
+    this.setState({contacts: this.state.contacts.concat([newContact])});
+
+    //console.log(e.name);
+    //const contactId = nanoid();
+
+
+  }
+  render = () => (
+    <div>
+      <Phonebook onAddContact={this.onAddContact }></Phonebook>
+      <Contacts contacts = {this.state.contacts}></Contacts>
     </div>
-  );
-};
+  )
+
+}
+
+
