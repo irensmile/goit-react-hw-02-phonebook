@@ -23,10 +23,13 @@ export class App extends Component{
       id: nanoid(),
       number: e.number
     };
-    if (this.state.contacts.some(c => c.name === e.name))
+    if (this.state.contacts.some(contact => contact.name.toLowerCase()  === e.name.toLowerCase())){
       alert(`${e.name} is already in contacts.`);
-    else
-      this.setState({contacts: this.state.contacts.concat([newContact])});
+      return;
+    }
+    this.setState((prevState) => (
+      { contacts: prevState.contacts.concat([newContact]) }
+    ));
   }
   onDelete = (id) => {
     this.setState((prev) => (
@@ -41,10 +44,7 @@ export class App extends Component{
   }
 
   filterContacts = () => {
-    if (this.state.filter)
-      return this.state.contacts.filter(el => el.name.toLowerCase().includes(this.state.filter.toLowerCase()))
-    else
-      return this.state.contacts
+    return this.state.contacts.filter(el => el.name.toLowerCase().includes(this.state.filter.toLowerCase()))
   }
 
   render = () => (
@@ -53,7 +53,7 @@ export class App extends Component{
       <ContactForm onAddContact={this.onAddContact}></ContactForm>
       <h2>Contacts</h2>
       <Filter onSearching = {this.onSearching}></Filter>
-      <ContactList onDelete={ this.onDelete } contacts = {this.filterContacts()} filter = {this.state.filter}></ContactList>
+      <ContactList onDelete={ this.onDelete } contacts = {this.filterContacts()} ></ContactList>
     </div>
   )
 
